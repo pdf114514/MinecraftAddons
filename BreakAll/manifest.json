@@ -1,0 +1,19 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "BreakAll",
+        "description": "MineAll, CutAll",
+        "uuid": "751c5ac2-987b-466e-8ce4-766ac42adc65",
+        "version": [1, 0, 0],
+        "min_engine_version": [1, 17, 0]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "c9f6772c-f23c-4c55-8b94-ffb4b438254b",
+            "version": [1, 0, 0],
+            "entry": "scripts/serverScript.js"
+        }
+    ],
+    "dependencies": []
+}
