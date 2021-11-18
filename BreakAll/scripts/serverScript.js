@@ -20,8 +20,8 @@ systemServer.initialize = function () {
         //Tree
         if (data.block_identifier.startsWith("minecraft:log") && item.__identifier__.endsWith("_axe")) {
             const blocks = systemServer.getBlocks(tickingArea,
-                pos.x - 1, pos.y-1, pos.z - 1,
-                pos.x + 1, pos.y+8, pos.z + 1
+                pos.x - 1, pos.y - 1, pos.z - 1,
+                pos.x + 1, pos.y + 25, pos.z + 1
             );
             if (blocks[1][0][1].__identifier__ == "minecraft:dirt" && blocks[1][2][1].__identifier__ == data.block_identifier) {
                 blocks.forEach(blocks1 => blocks1.forEach(blocks2 => blocks2.forEach(block => {
@@ -74,7 +74,7 @@ systemServer.log = function (...items) {
                 return item
         }
     }
-    
+
     const chatEvent = this.createEventData('minecraft:display_chat_event')
     chatEvent.data.message = items.map(toString).join(' ')
     this.broadcastEvent('minecraft:display_chat_event', chatEvent)
