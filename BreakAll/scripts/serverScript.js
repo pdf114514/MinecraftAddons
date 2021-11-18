@@ -10,12 +10,13 @@ systemServer.initialize = function () {
     this.broadcastEvent('minecraft:script_logger_config', scriptLoggerConfig)
 
     this.breakall = function(eventData) {
-        this.log(eventData)
+        //this.log(eventData)
         const data = eventData.data;
         const player = data.player;
-        let item = systemServer.getComponent(player, "minecraft:hand_container").data[0]; //0: main 1: off
+        let item = systemServer.getComponent(player, "minecraft:hand_container").data[0]; //0: main; 1: off
         const tickingArea = systemServer.getComponent(player, "minecraft:tick_world").data.ticking_area;
         const pos = data.block_position;
+        //let d = 0; // how to get durability of weapon
 
         //Tree
         if (data.block_identifier.startsWith("minecraft:log") && item.__identifier__.endsWith("_axe")) {
@@ -23,10 +24,11 @@ systemServer.initialize = function () {
                 pos.x - 1, pos.y - 1, pos.z - 1,
                 pos.x + 1, pos.y + 25, pos.z + 1
             );
-            if (blocks[1][0][1].__identifier__ == "minecraft:dirt" && blocks[1][2][1].__identifier__ == data.block_identifier) {
+            if (["minecraft:dirt", "minecraft:podzol", "minecraft:dirt_with_roots"].includes(blocks[1][0][1].__identifier__) && blocks[1][2][1].__identifier__ == data.block_identifier) {
                 blocks.forEach(blocks1 => blocks1.forEach(blocks2 => blocks2.forEach(block => {
                     if (block.__identifier__ == data.block_identifier) {
                         systemServer.executeCommand(`/setblock ${block.block_position.x} ${block.block_position.y} ${block.block_position.z} air 0 destroy`, () => {});
+                        //d++;
                     }
                 })));
             }
@@ -41,6 +43,7 @@ systemServer.initialize = function () {
             blocks.forEach(blocks1 => blocks1.forEach(blocks2 => blocks2.forEach(block => {
                 if (block.__identifier__ == data.block_identifier) {
                     systemServer.executeCommand(`/setblock ${block.block_position.x} ${block.block_position.y} ${block.block_position.z} air 0 destroy`, () => {});
+                    //d++;
                 }
             })));
         }
